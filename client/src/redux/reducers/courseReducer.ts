@@ -1,34 +1,20 @@
-import * as types from "../actions/actionTypes";
-import { Course, initialState } from "./initialState";
 
-interface CreateCourse {
-  type: "CREATE_COURSE";
-}
-interface CreateCourseSuccess {
-  type: "CREATE_COURSE_SUCCESS";
-}
-interface UpdateCourseSuccess {
-  type: "UPDATE_COURSE_SUCCESS";
-}
-interface LoadCoursesSuccess {
-  type: "LOAD_COURSES_SUCCESS";
-  payload: [];
-}
+// type CoursesAction =
+//   | CreateCourse
+//   | CreateCourseSuccess
+//   | UpdateCourseSuccess
+//   | LoadCoursesSuccess;
 
-type CoursesAction =
-  | CreateCourse
-  | CreateCourseSuccess
-  | UpdateCourseSuccess
-  | LoadCoursesSuccess;
 
-const courseReducer = (
-  state: Course[] = initialState.courses,
-  action: CoursesAction
-) => {
+import * as types from '../actions/actionTypes'
+import { Action, Course } from '../actions/courseActions';
+import { initialState } from "./initialState";
+const courseReducer = (state:Course[] = initialState.courses, action:Action) => {
   switch (action.type) {
+    case types.LOAD_COURSES_SUCCESS:
+      return action.payload;
     default:
-      return state;
+    return state;
   }
-};
-
+}
 export default courseReducer;
